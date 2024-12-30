@@ -58,6 +58,34 @@ class TheoryCoin:
                 break
         return transactions
     
+    def add_hash(self, block):
+        if len(self.tcchain) == 0:
+            temp_str = (str(block.timestamp) 
+                    + str(block.transaction))
+        else:
+            temp_str = (
+                str(block.timestamp)
+                + str(block.height)
+                + str(block.transaction)
+                + str(block.previous_hash)
+            )
+        temp_hash = hashlib.sha256(temp_str.encode()).hexdigest()
+        return temp_str, temp_hash
+
+
+    def proof_of_work(self, a_tuple):
+        if a_tuple[1][:4] == "0000":
+            return a_tuple[1], 0
+        else:
+            nonce = 0
+            temp_hash = "0"
+            while temp_hash[:4] != "0000":
+                temp_hash = hashlib.sha256((a_tuple[0] + str(nonce)).encode()).hexdigest()
+                nonce += 1
+            print(f"Hashed value: {temp_hash} - Nonce: {nonce}")
+            return temp_hash, nonce
+
+
     def print_block(self, block):
         print(f"\n\n--------------- TheoryCoin Block No. {block.height} ---------------")
         print(f"\nMined on (timestamp): {block.timestamp},"\
