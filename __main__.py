@@ -85,6 +85,24 @@ class TheoryCoin:
             print(f"Hashed value: {temp_hash} - Nonce: {nonce}")
             return temp_hash, nonce
 
+    def review_chain(self):
+        chain = [obj for obj in range(len(self.tcchain))]
+        if len(chain) > 9:
+            print("\n", ["..."]+[chain[-9:]])
+        else:
+            print(f"\nCurrent chain: {chain}")
+
+        while True:
+            inp = int(input("Which block do you wish to review? >>> "))
+            if 0<=inp<=len(self.tcchain):
+                self.print_block(self.tcchain[inp])
+                break
+            elif len(self.tcchain) == 0:
+                print("There are no blocks mined")
+                break
+            else:
+                print("Please select a valid block")
+                continue
 
     def print_block(self, block):
         print(f"\n\n--------------- TheoryCoin Block No. {block.height} ---------------")
