@@ -35,7 +35,6 @@ The program consists of three main classes: **Block**, **TheoryCoin**, and **Blo
   - `add_hash(block)`: Computes the hash of a block’s data.
   - `proof_of_work(a_tuple)`: Implements the proof-of-work algorithm to find a nonce that results in a valid hash.
   - `review_chain()`: Allows users to select and view specific blocks within the blockchain.
-  - `print_block(block)`: Displays detailed information about a specific block.
 
 ### 3. BlockchainInteraction
 - **Description**: The BlockchainInteraction class is responsible for user interaction. It provides a text-based menu for users to mine blocks, review the blockchain, or exit the program.
