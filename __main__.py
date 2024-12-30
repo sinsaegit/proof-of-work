@@ -126,7 +126,68 @@ class TheoryCoin:
         # print(str(obj))
 
 class BlockchainInteraction:
-    pass
+    def __init__(self):
+        self.blockchain = TheoryCoin()
+        self.choices = {
+            "1":self.opt1,
+            "2":self.opt2,
+            "3":self.exit
+        }
+
+    def greetings(self):
+        line = ("Welcome to TheoryCoinServices inc.,\n"\
+            "The no.1 provider of ming services of TheoryCoin and related services.\n")
+
+        def dotmove(n):
+            dot = "."*n
+            loading = (f"Loading {dot}")
+            print(loading + "   ", end = '\r')
+            time.sleep(0.18)
+
+        for x in range(2):
+            for y in range(4):
+                dotmove(y)
+            #for z in range(2,  0, -1):
+            for z in range(4):
+                dotmove(z)
+
+        dotmove(3)
+        for char in line:
+            print(char, end="", flush=True)
+            time.sleep(0.007)
+        print("\n")
+            
+    def display_menu(self):
+        print("\n ------- TheoryCoin -------")
+        print("Current available choices")
+        print("1. Mine a block")
+        print("2. Review chain")
+        print("3. Exit chain")
+
+    def run(self):
+        self.greetings()
+        while True:
+            self.display_menu()
+            choice = input("Enter choice >>> ")
+            if choice in self.choices:
+                self.choices[choice]()
+            else:
+                print("\nPlease select a valid choice.")
+
+    def opt1(self):
+        self.blockchain.add_block()
+
+    def opt2(self):
+        self.blockchain.review_chain()
+
+    def exit(self):
+        import sys
+        line = ("Thank you for using our services.\nGoodbye.")
+        for char in line:
+            print(char, end="", flush=True)
+            time.sleep(0.007)
+        print("\n")
+        sys.exit(0)
 
 if __name__ == "__main__":
     program = BlockchainInteraction()
